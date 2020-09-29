@@ -1,0 +1,18 @@
+{% extends 'registration/registrarion_basic.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Post added successfully
+{% endblock %}
+{% block form %}
+    <div class="alert alert-success shadow-lg">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <h4 class="card-title text-center ">Post added successfully</h4>
+                <p class="card-title text-center">After checking by the moderator, it will be published</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

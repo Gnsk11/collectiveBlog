@@ -1,0 +1,8 @@
+{% extends 'blog_basic.html' %}
+
+{% block form %}
+    {% if request.user.id == user_id %}
+        <h2 class="text-center">Your favorite</h2>
+        {% include 'blog/includes/posts.html' %}
+    {% endif %}
+{% endblock %}

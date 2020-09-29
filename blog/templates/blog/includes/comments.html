@@ -1,0 +1,26 @@
+<div class="card shadow-lg mt-4 mb-4">
+    <a href="{% url 'add_comment' post_id=object.id %}" class="btn btn-outline-light border-dark text-dark shadow">
+        Write a comment
+    </a>
+
+    <div class="card-body">
+        <header class="comments-section__head border-bottom mt-5">
+            <h3 class="comments-section__head-title ">
+                Comments
+                <span class="comments-section__head-counter text-info">{{ comments.count }}</span>
+            </h3>
+        </header>
+
+        {% for comment in comments %}
+            <div class="card shadow-lg mt-4">
+                <div class="card-body">
+                    <p>
+                        <strong><a class="text-dark"
+                                   href="{% url "account" pk=comment.sender.id status='p' %}">{{ comment.sender|capfirst }}</a></strong> {{ comment.date_time_publication }}
+                    </p>
+                    <p>{{ comment.text|capfirst }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

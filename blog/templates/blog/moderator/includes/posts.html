@@ -1,0 +1,26 @@
+<div class="card shadow-lg ">
+    <h2 class="card-title text-center mt-1">Posts awaiting moderation</h2>
+    <div class="card-body">
+        {% for post in object_list %}
+            <div class="card shadow-lg mt-3">
+                <p class="ml-2">
+                    <strong><a class="text-dark"
+                               href="{% url "account" pk=post.user.id status='p' %}">{{ post.user|capfirst }}</a></strong> {{ post.date_time_publication }}
+                </p>
+                <h5 class="card-title text-center mt-2">{{ post.title }}</h5>
+                <div class="card-body">
+                    <p>
+                        Characters: {{ post.text|length }} <a href="{% url 'post_reject' post_id=post.id %}"
+                                                              class="btn btn-sm btn-outline-danger float-right">Reject</a>
+                    </p>
+                    <p>
+                        Words: {{ post.text|wordcount }} <a href="{% url 'post_update' pk=post.id %}"
+                                                            class="btn btn-sm btn-outline-info float-right">More</a>
+                    </p>
+                </div>
+            </div>
+        {% empty %}
+            <h5 class="text-center">No posts yet</h5>
+        {% endfor %}
+    </div>
+</div>

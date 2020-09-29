@@ -1,0 +1,12 @@
+{% extends 'registration/registrarion_basic.html' %}
+
+{% block title %}
+    Logged out
+{% endblock %}
+
+{% block form %}
+    <div class="shadow-lg">
+        <p>You are logged out!</p>
+        <a href="{% url 'login' %}">Log in again</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'blog_basic.html' %}
+
+{% block navigation %}
+    <ul class="list-group mb-4">
+        {% for topic in topics %}
+            <a href="{% url "topic_posts" topic_name=topic.name %}"
+               class="btn btn-{% if topic.name not in request.path %}outline-{% endif %}info mt-1 shadow-sm text-dark">{{ topic.name }}</a>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
+{% block form %}
+    {% include 'blog/includes/posts.html' %}
+{% endblock %}

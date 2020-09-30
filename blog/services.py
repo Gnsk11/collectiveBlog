@@ -47,3 +47,9 @@ def add_post_to_favorites(post_id, user_id):
     favorite = Favorite.objects.get(user_id=user_id)
     favorite.posts.add(Post.objects.get(id=post_id))
     favorite.save()
+
+
+def delete_post_in_favorites(post_id, user_id):
+    favorite = Favorite.objects.get(user_id=user_id)
+    favorite.posts.remove(Post.objects.get(id=post_id))
+    favorite.save()

@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views import View
@@ -108,3 +109,26 @@ class PostToFavorites(LoginRequiredMixin, View):
     def get(self, request, pk):
         services.add_post_to_favorites(post_id=pk, user_id=request.user.id)
         return redirect(request.META.get('HTTP_REFERER'))
+
+
+class PostUnFavorites(LoginRequiredMixin, View):
+
+    def get(self, request, pk):
+        services.delete_post_in_favorites(post_id=pk, user_id=request.user.id)
+        return redirect(request.META.get('HTTP_REFERER'))
+
+
+class DeletePost(LoginRequiredMixin, DeleteView):
+    model = Post
+
+    def get_object(self, queryset=None):
+        obj = super(DeletePost, self).get_object()
+        if obj.user.id != self.request.user.id:
+            raise Http404
+        return obj
+
+    def get_success_url(self):
+        return reverse('account', kwargs={
+            'pk': self.request.user.id,
+            'status': 'p',
+        })

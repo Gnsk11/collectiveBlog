@@ -8,7 +8,9 @@ urlpatterns = [
     path('post/add/successfully', views.AddPostSuccessfully.as_view(), name='add_post_successfully'),
     path('post/<int:post_id>/comment/add', views.AddComment.as_view(), name='add_comment'),
     path('post/<int:pk>', views.PostView.as_view(), name='post_view'),
+    path('post/<int:pk>/delete', views.DeletePost.as_view(), name='post_delete'),
     path('post/<int:pk>/to_favorites', views.PostToFavorites.as_view(), name='to_favorites'),
+    path('post/<int:pk>/un_favorites', views.PostUnFavorites.as_view(), name='un_favorites'),
 
     path('posts', views.PostsView.as_view(), name='posts'),
     path('posts/topic/<str:topic_name>', views.PostsView.as_view(), name='topic_posts'),
